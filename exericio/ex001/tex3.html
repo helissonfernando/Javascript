@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />  
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Nuto:400,700');
+ *{
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+ }
+  body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #8ee9f0 100%); 
+ }
+ .navegacion{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ .menuToggle{
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    
+ }
+ .menuToggle::before{
+    content: '+';
+    position: absolute;
+    font-size: 3em;
+    font-weight: 200;
+    color: #fff;
+    transition: 1.5s;
+ }
+ .menuToggle.active::before{
+    transform: rotate(225deg);
+ }
+ .menu{
+    position: absolute;
+    width: 30px; height: 30px;
+    border-radius: 70px;
+    z-index: -1;
+    transition: transform 0.5s, width 0.5s, height 0.5s;
+    transition-delay: 1s, 0.5s, 0.5s;
+    transition-timing-function: cubic- bezier(0.075, 0.82, 0.165, 1);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+ .menuToggle.active ~ .menu{
+    width: 240px;
+    height: 70px;
+    z-index: 1;
+    transform: translateY(-100px);
+    transition-delay: 0s, 0.5s, 0.5s;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .menuToggle.active ~ .menu::before
+  {
+    transition-delay: 0.5s;
+    bottom: -8px;
+  }
+  .menu ul{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    gap: 40px;
+  }
+  .menu ul li{
+    list-style: none;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-30px);
+    transition: 0.25s;
+    transition-delay: calc(0s + var(--i));
+  }
+  .menuToggle.active ~ .menu ul  li{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+    transition-delay: calc(0.75s + var(--i));
+  }
+  .menu ul li a{
+    display: block;
+    font-size: 2em;
+    text-decoration: none;
+    color: #fff;
+  }
+    </style>
+</head>
+<body>
+    <div class="navegacion">
+        <div class="menuToggle"></div>
+        <div class="menu">
+          <ul>
+            <li style="--i:0.1s;"><a><i class="fab fa-instagram"></i></a></li>
+            <li style="--i:0.2s;"><a><i class="fab fa-youtube"></i></a></li>
+            <li style="--i:0.3s;"><a><i class="fab fa-tiktok"></i></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <script>
+            let menuToggle= document.querySelector('.menuToggle');
+    menuToggle.onclick = function(){
+      menuToggle.classList.toggle('active')
+    }
+      </script>
+</body>
+</html>
